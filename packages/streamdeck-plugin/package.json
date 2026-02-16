@@ -1,0 +1,24 @@
+{
+  "name": "@streamdeck-vscode/plugin",
+  "version": "1.0.0",
+  "private": true,
+  "main": "com.nicollasr.streamdeckvsc.sdPlugin/bin/plugin.js",
+  "scripts": {
+    "build": "tsc && rollup -c",
+    "pack": "npx @elgato/cli pack com.nicollasr.streamdeckvsc.sdPlugin"
+  },
+  "dependencies": {
+    "@elgato/streamdeck": "^0.3.0",
+    "@streamdeck-vscode/shared": "*",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.10",
+    "@types/node": "^18.19.0",
+    "typescript": "^5.3.3",
+    "rollup": "^4.9.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-json": "^6.1.0"
+  }
+}

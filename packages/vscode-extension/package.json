@@ -1,0 +1,70 @@
+{
+  "name": "vscode-streamdeck",
+  "displayName": "Stream Deck for Visual Studio Code",
+  "description": "Enables Stream Deck integration with Visual Studio Code.",
+  "version": "5.0.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "bugs": {
+    "url": "https://github.com/plicon/streamdeck_vscode/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plicon/streamdeck_vscode.git"
+  },
+  "publisher": "nicollasr",
+  "author": {
+    "name": "Nicollas R."
+  },
+  "categories": ["Other"],
+  "activationEvents": ["*"],
+  "keywords": ["streamdeck", "deck", "stream", "elgato"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "category": "Stream Deck",
+        "command": "streamdeck.reconnectToServer",
+        "title": "Reconnect"
+      },
+      {
+        "category": "Stream Deck",
+        "command": "streamdeck.activateSession",
+        "title": "Activate"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "Stream Deck",
+        "properties": {
+          "streamdeck.serverHost": {
+            "default": "127.0.0.1",
+            "type": "string"
+          },
+          "streamdeck.serverPort": {
+            "default": 48969,
+            "type": "integer"
+          }
+        }
+      }
+    ]
+  },
+  "extensionKind": ["ui"],
+  "icon": "code.png",
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "tsc",
+    "watch": "tsc -watch"
+  },
+  "dependencies": {
+    "@streamdeck-vscode/shared": "*",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/ws": "^8.5.10",
+    "@types/node": "^18.19.0",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,15 @@
+export enum MessageId {
+  ExecuteCommandMessage = "ExecuteCommandMessage",
+  ExecuteTerminalCommandMessage = "ExecuteTerminalCommandMessage",
+  CreateTerminalMessage = "CreateTerminalMessage",
+  InsertSnippetMessage = "InsertSnippetMessage",
+  ChangeLanguageMessage = "ChangeLanguageMessage",
+  OpenFolderMessage = "OpenFolderMessage",
+  ActiveSessionChangedMessage = "ActiveSessionChangedMessage",
+  ChangeActiveSessionMessage = "ChangeActiveSessionMessage",
+}
+
+export interface MessageEnvelope {
+  id: string;
+  data: string;
+}

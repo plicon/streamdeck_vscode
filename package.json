@@ -1,0 +1,20 @@
+{
+  "name": "streamdeck-vscode",
+  "private": true,
+  "workspaces": [
+    "packages/shared",
+    "packages/vscode-extension",
+    "packages/streamdeck-plugin"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "build:shared": "npm run build -w @streamdeck-vscode/shared",
+    "build:extension": "npm run build -w vscode-streamdeck",
+    "build:plugin": "npm run build -w @streamdeck-vscode/plugin",
+    "pack:plugin": "npm run build && npm run pack -w @streamdeck-vscode/plugin",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.18"
+  }
+}

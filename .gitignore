@@ -1,0 +1,9 @@
+node_modules/
+out/
+dist/
+*.js.map
+*.d.ts
+!rollup.config.mjs
+packages/streamdeck-plugin/com.nicollasr.streamdeckvsc.sdPlugin/bin/
+.DS_Store
+.claude/
