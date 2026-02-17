@@ -124,11 +124,16 @@ function openFolder(request: OpenFolderPayload) {
   }
 }
 
-function navigateToFile(request: NavigateToFilePayload) {
+async function navigateToFile(request: NavigateToFilePayload) {
   if (request.filePath) {
-    vscode.workspace.openTextDocument(vscode.Uri.file(request.filePath)).then((doc) => {
-      vscode.window.showTextDocument(doc);
-    });
+    try {
+      const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(request.filePath));
+      await vscode.window.showTextDocument(doc);
+    } catch (error) {
+      Logger.log(`Failed to open file: ${request.filePath}`);
+      Logger.error(error);
+      vscode.window.showErrorMessage(`Failed to open file: ${request.filePath}`);
+    }
   }
 }
 
