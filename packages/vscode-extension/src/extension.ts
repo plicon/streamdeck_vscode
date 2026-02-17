@@ -137,9 +137,13 @@ async function navigateToFile(request: NavigateToFilePayload) {
   }
 }
 
-function switchProfile(request: SwitchProfilePayload) {
+async function switchProfile(request: SwitchProfilePayload) {
   if (request.profileName) {
-    vscode.commands.executeCommand("workbench.profiles.actions.switchProfile", request.profileName);
+    try {
+      await vscode.commands.executeCommand("workbench.profiles.actions.switchProfile", request.profileName);
+    } catch (error) {
+      Logger.error(error);
+    }
   }
 }
 
