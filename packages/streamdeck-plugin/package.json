@@ -2,10 +2,10 @@
   "name": "@streamdeck-vscode/plugin",
   "version": "1.0.0",
   "private": true,
-  "main": "com.nicollasr.streamdeckvsc.sdPlugin/bin/plugin.js",
+  "main": "nl.plicon.streamdeck-vscode.sdPlugin/bin/plugin.js",
   "scripts": {
     "build": "tsc && rollup -c",
-    "pack": "npx @elgato/cli pack com.nicollasr.streamdeckvsc.sdPlugin"
+    "pack": "npx @elgato/cli pack nl.plicon.streamdeck-vscode.sdPlugin"
   },
   "dependencies": {
     "@elgato/streamdeck": "^0.3.0",

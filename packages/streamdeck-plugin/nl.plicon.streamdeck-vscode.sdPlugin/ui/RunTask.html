@@ -8,7 +8,7 @@
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <title>com.nicollasr.streamdeckvsc.executeterminalcommand PI</title>
+    <title>nl.plicon.streamdeck-vscode.runtask PI</title>
     <link rel="stylesheet" href="css/sdpi.css" />
     <script src="js/pi.js"></script>
   </head>
@@ -20,19 +20,20 @@
       </div>
 
       <div class="sdpi-item">
-        <div class="sdpi-item-label">Command</div>
-        <input class="sdpi-item-value" type="text" id="command" value="" />
+        <div class="sdpi-item-label">Task Name</div>
+        <input class="sdpi-item-value" type="text" id="taskName" value="" />
       </div>
 
-      <!-- <div type="checkbox" class="sdpi-item">
-        <div class="sdpi-item-label">Create Terminal</div>
-        <div class="sdpi-item-value">
-          <div class="sdpi-item-child">
-            <input id="createCloseTerminal" type="checkbox" value="true" />
-            <label for="createCloseTerminal" class="sdpi-item-label"><span></span></label>
-          </div>
-        </div>
-      </div> -->
+      <div class="sdpi-item alignTop">
+        <div class="sdpi-item-label empty"></div>
+        <details open class="noInnerMargins">
+          <summary>Task Name</summary>
+          <p>
+            Enter the exact name of the task as defined in your <strong>tasks.json</strong>.
+            Leave empty to show the task picker.
+          </p>
+        </details>
+      </div>
     </div>
 
     <div class="sdpi-info-label hidden" style="top: -1000;" value=""></div>

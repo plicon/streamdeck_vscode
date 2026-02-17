@@ -4,11 +4,11 @@
 
 - [ ] Create an account on the [Elgato Marketplace](https://marketplace.elgato.com/) and register as a plugin developer
 - [ ] Create a VS Code Marketplace publisher account at [Visual Studio Marketplace](https://marketplace.visualstudio.com/manage)
-- [ ] Choose a new plugin UUID namespace (e.g., `com.plicon.streamdeckvsc`) to replace `com.nicollasr.streamdeckvsc`
+- [ ] Choose a new plugin UUID namespace (e.g., `com.plicon.streamdeckvsc`) to replace `nl.plicon.streamdeck-vscode`
 - [ ] Once accounts are set up, update the following across the codebase:
-  - [ ] Rename `.sdPlugin` folder from `com.nicollasr.streamdeckvsc.sdPlugin` to the new UUID
+  - [ ] Rename `.sdPlugin` folder from `nl.plicon.streamdeck-vscode.sdPlugin` to the new UUID
   - [ ] Update `UUID` field in `manifest.json`
-  - [ ] Update all action UUIDs in `manifest.json` (e.g., `com.nicollasr.streamdeckvsc.executecommand`)
+  - [ ] Update all action UUIDs in `manifest.json` (e.g., `nl.plicon.streamdeck-vscode.executecommand`)
   - [ ] Update all `@action({ UUID: ... })` decorators in `packages/streamdeck-plugin/src/actions/*.ts`
   - [ ] Update `main` and `pack` script paths in `packages/streamdeck-plugin/package.json`
   - [ ] Update `publisher` field in `packages/vscode-extension/package.json`

@@ -2,20 +2,19 @@ import { action, KeyDownEvent, SingletonAction } from "@elgato/streamdeck";
 import { MessageId, ExecuteCommandPayload } from "@streamdeck-vscode/shared";
 import { messageServer } from "../server/instance";
 
-type ExecuteCommandSettings = {
-  command?: string;
-  arguments?: string;
+type RunTaskSettings = {
+  taskName?: string;
 };
 
-@action({ UUID: "nl.plicon.streamdeck-vscode.executecommand" })
-export class ExecuteCommandAction extends SingletonAction<ExecuteCommandSettings> {
-  override async onKeyDown(ev: KeyDownEvent<ExecuteCommandSettings>): Promise<void> {
+@action({ UUID: "nl.plicon.streamdeck-vscode.runtask" })
+export class RunTaskAction extends SingletonAction<RunTaskSettings> {
+  override async onKeyDown(ev: KeyDownEvent<RunTaskSettings>): Promise<void> {
     const settings = ev.payload.settings;
     const client = messageServer.currentClient;
-    if (client && settings.command) {
+    if (client) {
       const payload: ExecuteCommandPayload = {
-        command: settings.command,
-        arguments: settings.arguments ?? "",
+        command: "workbench.action.tasks.runTask",
+        arguments: settings.taskName ? JSON.stringify(settings.taskName) : "",
       };
       client.send(MessageId.ExecuteCommandMessage, payload);
     }

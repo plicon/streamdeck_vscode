@@ -6,7 +6,7 @@ type InsertSnippetSettings = {
   name?: string;
 };
 
-@action({ UUID: "com.nicollasr.streamdeckvsc.insertsnippet" })
+@action({ UUID: "nl.plicon.streamdeck-vscode.insertsnippet" })
 export class InsertSnippetAction extends SingletonAction<InsertSnippetSettings> {
   override async onKeyDown(ev: KeyDownEvent<InsertSnippetSettings>): Promise<void> {
     const settings = ev.payload.settings;

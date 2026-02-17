@@ -7,3 +7,5 @@ export { ChangeLanguagePayload } from "./change-language";
 export { OpenFolderPayload } from "./open-folder";
 export { ActiveSessionChangedPayload } from "./active-session-changed";
 export { ChangeActiveSessionPayload } from "./change-active-session";
+export { NavigateToFilePayload } from "./navigate-to-file";
+export { SwitchProfilePayload } from "./switch-profile";

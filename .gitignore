@@ -4,6 +4,7 @@ dist/
 *.js.map
 *.d.ts
 !rollup.config.mjs
-packages/streamdeck-plugin/com.nicollasr.streamdeckvsc.sdPlugin/bin/
+packages/streamdeck-plugin/nl.plicon.streamdeck-vscode.sdPlugin/bin/
+*.streamDeckPlugin
 .DS_Store
 .claude/

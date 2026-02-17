@@ -11,10 +11,12 @@ describe("MessageId enum", () => {
     expect(MessageId.OpenFolderMessage).toBe("OpenFolderMessage");
     expect(MessageId.ActiveSessionChangedMessage).toBe("ActiveSessionChangedMessage");
     expect(MessageId.ChangeActiveSessionMessage).toBe("ChangeActiveSessionMessage");
+    expect(MessageId.NavigateToFileMessage).toBe("NavigateToFileMessage");
+    expect(MessageId.SwitchProfileMessage).toBe("SwitchProfileMessage");
   });
 
-  it("has exactly 8 message types", () => {
+  it("has exactly 10 message types", () => {
     const values = Object.values(MessageId);
-    expect(values).toHaveLength(8);
+    expect(values).toHaveLength(10);
   });
 });

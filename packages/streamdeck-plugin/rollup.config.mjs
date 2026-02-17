@@ -5,7 +5,7 @@ import json from "@rollup/plugin-json";
 export default {
   input: "dist/plugin.js",
   output: {
-    file: "com.nicollasr.streamdeckvsc.sdPlugin/bin/plugin.js",
+    file: "nl.plicon.streamdeck-vscode.sdPlugin/bin/plugin.js",
     format: "cjs",
     sourcemap: false,
   },

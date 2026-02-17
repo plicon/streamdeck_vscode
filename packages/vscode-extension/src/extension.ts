@@ -11,6 +11,8 @@ import type {
   ChangeLanguagePayload,
   InsertSnippetPayload,
   OpenFolderPayload,
+  NavigateToFilePayload,
+  SwitchProfilePayload,
 } from "@streamdeck-vscode/shared";
 
 let extensionController: ExtensionController;
@@ -91,6 +93,8 @@ function subscriptions(context: vscode.ExtensionContext, controller: ExtensionCo
     controller.onChangeLanguage((request) => changeLanguage(request)),
     controller.onInsertSnippet((request) => insertSnippet(request)),
     controller.onOpenFolder((request) => openFolder(request)),
+    controller.onNavigateToFile((request) => navigateToFile(request)),
+    controller.onSwitchProfile((request) => switchProfile(request)),
   );
 }
 
@@ -117,6 +121,20 @@ function insertSnippet(request: InsertSnippetPayload) {
 function openFolder(request: OpenFolderPayload) {
   if (request.path) {
     vscode.commands.executeCommand("vscode.openFolder", vscode.Uri.file(request.path), request.newWindow);
+  }
+}
+
+function navigateToFile(request: NavigateToFilePayload) {
+  if (request.filePath) {
+    vscode.workspace.openTextDocument(vscode.Uri.file(request.filePath)).then((doc) => {
+      vscode.window.showTextDocument(doc);
+    });
+  }
+}
+
+function switchProfile(request: SwitchProfilePayload) {
+  if (request.profileName) {
+    vscode.commands.executeCommand("workbench.profiles.actions.switchProfile", request.profileName);
   }
 }
 

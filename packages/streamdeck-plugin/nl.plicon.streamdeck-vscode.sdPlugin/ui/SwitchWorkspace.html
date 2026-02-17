@@ -8,7 +8,7 @@
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <title>com.nicollasr.streamdeckvsc.createterminal PI</title>
+    <title>nl.plicon.streamdeck-vscode.switchworkspace PI</title>
     <link rel="stylesheet" href="css/sdpi.css" />
     <script src="js/pi.js"></script>
   </head>
@@ -20,31 +20,16 @@
       </div>
 
       <div class="sdpi-item">
-        <div class="sdpi-item-label">Name</div>
-        <input class="sdpi-item-value" type="text" id="name" value="" />
-      </div>
-
-      <div class="sdpi-item">
         <div class="sdpi-item-label">Path</div>
-        <input class="sdpi-item-value" type="text" id="shellPath" value="" />
-      </div>
-
-      <div class="sdpi-item">
-        <div class="sdpi-item-label">Arguments</div>
-        <input class="sdpi-item-value" type="text" id="shellArgs" value="" />
-      </div>
-
-      <div class="sdpi-item">
-        <div class="sdpi-item-label">Working Directory</div>
-        <input class="sdpi-item-value" type="text" id="workingDirectory" value="" />
+        <input class="sdpi-item-value" type="text" id="path" value="" />
       </div>
 
       <div type="checkbox" class="sdpi-item">
-        <div class="sdpi-item-label">Preserve Focus</div>
+        <div class="sdpi-item-label">New Window</div>
         <div class="sdpi-item-value">
           <div class="sdpi-item-child">
-            <input id="preserveFocus" type="checkbox" value="true" />
-            <label for="preserveFocus" class="sdpi-item-label"><span></span></label>
+            <input id="newWindow" type="checkbox" value="true" />
+            <label for="newWindow" class="sdpi-item-label"><span></span></label>
           </div>
         </div>
       </div>

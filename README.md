@@ -41,7 +41,7 @@ code --install-extension vscode-streamdeck-5.0.0.vsix
 
 ### Stream Deck Plugin
 
-1. Download the latest `com.nicollasr.streamdeckvsc.streamDeckPlugin` from [Releases](https://github.com/plicon/streamdeck_vscode/releases)
+1. Download the latest `nl.plicon.streamdeck-vscode.streamDeckPlugin` from [Releases](https://github.com/plicon/streamdeck_vscode/releases)
 2. Double-click the file to install it into Stream Deck
 
 ### Getting Started
@@ -91,7 +91,7 @@ npm test                 # Run all tests
 npm run pack:plugin      # Build + package as .streamDeckPlugin
 ```
 
-The output file is at `packages/streamdeck-plugin/com.nicollasr.streamdeckvsc.streamDeckPlugin`.
+The output file is at `packages/streamdeck-plugin/nl.plicon.streamdeck-vscode.streamDeckPlugin`.
 
 ### Development Install (Stream Deck)
 
@@ -99,8 +99,8 @@ For rapid iteration, symlink the plugin directory:
 
 ```bash
 # macOS
-ln -s "$(pwd)/packages/streamdeck-plugin/com.nicollasr.streamdeckvsc.sdPlugin" \
-  ~/Library/Application\ Support/com.elgato.StreamDeck/Plugins/com.nicollasr.streamdeckvsc.sdPlugin
+ln -s "$(pwd)/packages/streamdeck-plugin/nl.plicon.streamdeck-vscode.sdPlugin" \
+  ~/Library/Application\ Support/com.elgato.StreamDeck/Plugins/nl.plicon.streamdeck-vscode.sdPlugin
 ```
 
 Then restart Stream Deck. Changes take effect after `npm run build:plugin`.

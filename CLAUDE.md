@@ -29,7 +29,7 @@ Shared must be built before extension or plugin. The root `npm run build` handle
 
 - **shared**: Pure TypeScript, compiled with `tsc` to `out/`. Exports message interfaces, `MessageId` enum, `encodeMessage`/`decodeMessage` helpers, and constants.
 - **vscode-extension**: Compiled with `tsc` to `out/`. Uses `vscode.EventEmitter` for events (no external event library). Depends on `ws` and `@streamdeck-vscode/shared`.
-- **streamdeck-plugin**: Compiled with `tsc` to `dist/`, then bundled with Rollup to a single `com.nicollasr.streamdeckvsc.sdPlugin/bin/plugin.js`. Uses `@elgato/streamdeck` Node.js SDK. The `.sdPlugin/` directory contains the complete distributable plugin (manifest, icons, PropertyInspector UI, bundled JS).
+- **streamdeck-plugin**: Compiled with `tsc` to `dist/`, then bundled with Rollup to a single `nl.plicon.streamdeck-vscode.sdPlugin/bin/plugin.js`. Uses `@elgato/streamdeck` Node.js SDK. The `.sdPlugin/` directory contains the complete distributable plugin (manifest, icons, PropertyInspector UI, bundled JS).
 
 ## Protocol
 
