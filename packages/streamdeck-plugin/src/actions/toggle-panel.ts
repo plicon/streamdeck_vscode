@@ -21,7 +21,7 @@ export class TogglePanelAction extends SingletonAction<TogglePanelSettings> {
     if (client && command) {
       const payload: ExecuteCommandPayload = {
         command,
-        arguments: "",
+        arguments: "null",
       };
       client.send(MessageId.ExecuteCommandMessage, payload);
     }
