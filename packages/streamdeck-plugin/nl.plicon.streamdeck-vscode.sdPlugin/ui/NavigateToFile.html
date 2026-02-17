@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -8,7 +8,7 @@
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <title>com.nicollasr.streamdeckvsc.changelanguage PI</title>
+    <title>nl.plicon.streamdeck-vscode.navigatetofile PI</title>
     <link rel="stylesheet" href="css/sdpi.css" />
     <script src="js/pi.js"></script>
   </head>
@@ -20,14 +20,19 @@
       </div>
 
       <div class="sdpi-item">
-        <div class="sdpi-item-label">Language ID</div>
-        <input class="sdpi-item-value" type="text" id="languageId" value="" />
+        <div class="sdpi-item-label">File Path</div>
+        <input class="sdpi-item-value" type="text" id="filePath" value="" />
       </div>
 
-      <div class="sdpi-item">
-        <a href="https://code.visualstudio.com/docs/languages/identifiers" target="blank">
-          Language Identifiers
-        </a>
+      <div class="sdpi-item alignTop">
+        <div class="sdpi-item-label empty"></div>
+        <details open class="noInnerMargins">
+          <summary>File Path</summary>
+          <p>
+            Enter the absolute path to the file you want to open.
+            e.g.: <strong>/Users/you/project/src/index.ts</strong>
+          </p>
+        </details>
       </div>
     </div>
 

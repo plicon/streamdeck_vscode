@@ -11,6 +11,8 @@ import type {
   ChangeLanguagePayload,
   InsertSnippetPayload,
   OpenFolderPayload,
+  NavigateToFilePayload,
+  SwitchProfilePayload,
 } from "@streamdeck-vscode/shared";
 
 let extensionController: ExtensionController;
@@ -91,6 +93,8 @@ function subscriptions(context: vscode.ExtensionContext, controller: ExtensionCo
     controller.onChangeLanguage((request) => changeLanguage(request)),
     controller.onInsertSnippet((request) => insertSnippet(request)),
     controller.onOpenFolder((request) => openFolder(request)),
+    controller.onNavigateToFile((request) => navigateToFile(request)),
+    controller.onSwitchProfile((request) => switchProfile(request)),
   );
 }
 
@@ -117,6 +121,29 @@ function insertSnippet(request: InsertSnippetPayload) {
 function openFolder(request: OpenFolderPayload) {
   if (request.path) {
     vscode.commands.executeCommand("vscode.openFolder", vscode.Uri.file(request.path), request.newWindow);
+  }
+}
+
+async function navigateToFile(request: NavigateToFilePayload) {
+  if (request.filePath) {
+    try {
+      const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(request.filePath));
+      await vscode.window.showTextDocument(doc);
+    } catch (error) {
+      Logger.log(`Failed to open file: ${request.filePath}`);
+      Logger.error(error);
+      vscode.window.showErrorMessage(`Failed to open file: ${request.filePath}`);
+    }
+  }
+}
+
+async function switchProfile(request: SwitchProfilePayload) {
+  if (request.profileName) {
+    try {
+      await vscode.commands.executeCommand("workbench.profiles.actions.switchProfile", request.profileName);
+    } catch (error) {
+      Logger.error(error);
+    }
   }
 }
 

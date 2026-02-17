@@ -6,7 +6,7 @@ type ExecuteTerminalCommandSettings = {
   command?: string;
 };
 
-@action({ UUID: "com.nicollasr.streamdeckvsc.executeterminalcommand" })
+@action({ UUID: "nl.plicon.streamdeck-vscode.executeterminalcommand" })
 export class ExecuteTerminalCommandAction extends SingletonAction<ExecuteTerminalCommandSettings> {
   override async onKeyDown(ev: KeyDownEvent<ExecuteTerminalCommandSettings>): Promise<void> {
     const settings = ev.payload.settings;

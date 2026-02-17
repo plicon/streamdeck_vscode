@@ -6,7 +6,7 @@ type ChangeLanguageSettings = {
   languageId?: string;
 };
 
-@action({ UUID: "com.nicollasr.streamdeckvsc.changelanguage" })
+@action({ UUID: "nl.plicon.streamdeck-vscode.changelanguage" })
 export class ChangeLanguageAction extends SingletonAction<ChangeLanguageSettings> {
   override async onKeyDown(ev: KeyDownEvent<ChangeLanguageSettings>): Promise<void> {
     const settings = ev.payload.settings;

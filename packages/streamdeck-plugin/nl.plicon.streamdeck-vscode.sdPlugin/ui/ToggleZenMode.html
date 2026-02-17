@@ -8,7 +8,7 @@
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <title>com.nicollasr.streamdeckvsc.openfolder PI</title>
+    <title>nl.plicon.streamdeck-vscode.togglezenmode PI</title>
     <link rel="stylesheet" href="css/sdpi.css" />
     <script src="js/pi.js"></script>
   </head>
@@ -20,18 +20,11 @@
       </div>
 
       <div class="sdpi-item">
-        <div class="sdpi-item-label">Path</div>
-        <input class="sdpi-item-value" type="text" id="path" value="" />
-      </div>
-
-      <div type="checkbox" class="sdpi-item">
-        <div class="sdpi-item-label">New Window</div>
-        <div class="sdpi-item-value">
-          <div class="sdpi-item-child">
-            <input id="newWindow" type="checkbox" value="true" />
-            <label for="newWindow" class="sdpi-item-label"><span></span></label>
-          </div>
-        </div>
+        <div class="sdpi-item-label">Mode</div>
+        <select class="sdpi-item-value" id="modeType">
+          <option value="zen">Zen Mode</option>
+          <option value="centered">Centered Layout</option>
+        </select>
       </div>
     </div>
 

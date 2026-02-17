@@ -8,7 +8,7 @@
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <title>com.nicollasr.streamdeckvsc.insertsnippet PI</title>
+    <title>nl.plicon.streamdeck-vscode.switchprofile PI</title>
     <link rel="stylesheet" href="css/sdpi.css" />
     <script src="js/pi.js"></script>
   </head>
@@ -20,19 +20,19 @@
       </div>
 
       <div class="sdpi-item">
-        <div class="sdpi-item-label">Name (not prefix)</div>
-        <input class="sdpi-item-value" type="text" id="name" value="" />
+        <div class="sdpi-item-label">Profile Name</div>
+        <input class="sdpi-item-value" type="text" id="profileName" value="" />
       </div>
 
-      <div class="sdpi-item">
-        <pre>
-          <code>
-            "My Hello World (THIS IS THE NAME)": {
-              "prefix": "a-hello-world",
-              "body": "Hello World."
-            }
-          </code>
-        </pre>
+      <div class="sdpi-item alignTop">
+        <div class="sdpi-item-label empty"></div>
+        <details open class="noInnerMargins">
+          <summary>Profile Name</summary>
+          <p>
+            Enter the exact name of the VS Code profile to switch to.
+            Profiles can be managed via <strong>File > Preferences > Profiles</strong>.
+          </p>
+        </details>
       </div>
     </div>
 

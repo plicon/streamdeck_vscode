@@ -4,17 +4,6 @@ Future integrations and enhancements for the Stream Deck VS Code plugin.
 
 ## New Actions
 
-### Quick Wins
-
-Simple to implement, high daily use.
-
-- **Toggle Sidebar/Panel/Terminal** — One-button toggle for panels you constantly show/hide. Dedicated icons make them visually distinct on the deck.
-- **Run Task** — Run a named VS Code task (build, lint, test). A dedicated action with a task name field is more discoverable than a generic Execute Command.
-- **Navigate to File** — Open a specific file by path. Useful for jumping to config files, TODOs, or dashboards you check frequently.
-- **Toggle Zen/Focus Mode** — Single press to enter distraction-free coding.
-- **Switch Workspace** — Button per project to instantly switch between workspaces.
-- **Profile Switcher** — Switch between VS Code Settings Profiles (e.g., "Python Dev", "Web Dev", "Presenting").
-
 ### Feedback-Driven Actions
 
 These send state back to the Stream Deck to update button icons and titles. This is the key differentiator over keyboard shortcuts — physical buttons that show live state.

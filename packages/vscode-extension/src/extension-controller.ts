@@ -10,6 +10,8 @@ import {
   ChangeLanguagePayload,
   InsertSnippetPayload,
   OpenFolderPayload,
+  NavigateToFilePayload,
+  SwitchProfilePayload,
 } from "@streamdeck-vscode/shared";
 import { ExtensionStatus } from "./extension-status";
 import { ExtensionHub } from "./extension-hub";
@@ -28,6 +30,8 @@ export class ExtensionController {
   private _onChangeLanguage = new vscode.EventEmitter<ChangeLanguagePayload>();
   private _onInsertSnippet = new vscode.EventEmitter<InsertSnippetPayload>();
   private _onOpenFolder = new vscode.EventEmitter<OpenFolderPayload>();
+  private _onNavigateToFile = new vscode.EventEmitter<NavigateToFilePayload>();
+  private _onSwitchProfile = new vscode.EventEmitter<SwitchProfilePayload>();
 
   readonly onCreateTerminal = this._onCreateTerminal.event;
   readonly onExecuteTerminalCommand = this._onExecuteTerminalCommand.event;
@@ -36,7 +40,10 @@ export class ExtensionController {
   readonly onChangeLanguage = this._onChangeLanguage.event;
   readonly onInsertSnippet = this._onInsertSnippet.event;
   readonly onOpenFolder = this._onOpenFolder.event;
+  readonly onNavigateToFile = this._onNavigateToFile.event;
+  readonly onSwitchProfile = this._onSwitchProfile.event;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- heterogeneous emitter map
   private readonly messageHandlers: Record<string, vscode.EventEmitter<any>> = {
     [MessageId.CreateTerminalMessage]: this._onCreateTerminal,
     [MessageId.ExecuteTerminalCommandMessage]: this._onExecuteTerminalCommand,
@@ -45,6 +52,8 @@ export class ExtensionController {
     [MessageId.ChangeLanguageMessage]: this._onChangeLanguage,
     [MessageId.InsertSnippetMessage]: this._onInsertSnippet,
     [MessageId.OpenFolderMessage]: this._onOpenFolder,
+    [MessageId.NavigateToFileMessage]: this._onNavigateToFile,
+    [MessageId.SwitchProfileMessage]: this._onSwitchProfile,
   };
 
   constructor(

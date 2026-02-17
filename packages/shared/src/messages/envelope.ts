@@ -7,6 +7,8 @@ export enum MessageId {
   OpenFolderMessage = "OpenFolderMessage",
   ActiveSessionChangedMessage = "ActiveSessionChangedMessage",
   ChangeActiveSessionMessage = "ChangeActiveSessionMessage",
+  NavigateToFileMessage = "NavigateToFileMessage",
+  SwitchProfileMessage = "SwitchProfileMessage",
 }
 
 export interface MessageEnvelope {

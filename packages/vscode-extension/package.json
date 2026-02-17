@@ -55,7 +55,8 @@
   "scripts": {
     "vscode:prepublish": "npm run build",
     "build": "tsc",
-    "watch": "tsc -watch"
+    "watch": "tsc -watch",
+    "pack": "npx @vscode/vsce package --no-dependencies"
   },
   "dependencies": {
     "@streamdeck-vscode/shared": "*",

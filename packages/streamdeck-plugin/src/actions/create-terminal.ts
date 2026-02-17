@@ -10,7 +10,7 @@ type CreateTerminalSettings = {
   workingDirectory?: string;
 };
 
-@action({ UUID: "com.nicollasr.streamdeckvsc.createterminal" })
+@action({ UUID: "nl.plicon.streamdeck-vscode.createterminal" })
 export class CreateTerminalAction extends SingletonAction<CreateTerminalSettings> {
   override async onKeyDown(ev: KeyDownEvent<CreateTerminalSettings>): Promise<void> {
     const settings = ev.payload.settings;

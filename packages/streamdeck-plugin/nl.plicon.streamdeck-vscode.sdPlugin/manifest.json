@@ -1,0 +1,188 @@
+{
+  "Actions": [
+    {
+      "Icon": "imgs/VisualStudioCode",
+      "Name": "Execute Command",
+      "States": [
+        {
+          "Image": "imgs/VisualStudioCode"
+        }
+      ],
+      "Tooltip": "Executes a Visual Studio Code command with the given command identifier (Command ID).",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/ExecuteCommand.html",
+      "UUID": "nl.plicon.streamdeck-vscode.executecommand"
+    },
+    {
+      "Icon": "imgs/VisualStudioCode",
+      "Name": "Execute Terminal Command",
+      "States": [
+        {
+          "Image": "imgs/VisualStudioCode"
+        }
+      ],
+      "Tooltip": "Executes a terminal command.",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/ExecuteTerminalCommand.html",
+      "UUID": "nl.plicon.streamdeck-vscode.executeterminalcommand"
+    },
+    {
+      "Icon": "imgs/VisualStudioCode",
+      "Name": "Insert Snippet",
+      "States": [
+        {
+          "Image": "imgs/VisualStudioCode"
+        }
+      ],
+      "Tooltip": "Insert snippet.",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/InsertSnippet.html",
+      "UUID": "nl.plicon.streamdeck-vscode.insertsnippet"
+    },
+    {
+      "Icon": "imgs/VisualStudioCode",
+      "Name": "Change Language",
+      "States": [
+        {
+          "Image": "imgs/VisualStudioCode"
+        }
+      ],
+      "Tooltip": "Change the language that is associated with the given document.",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/ChangeLanguage.html",
+      "UUID": "nl.plicon.streamdeck-vscode.changelanguage"
+    },
+    {
+      "Icon": "imgs/VisualStudioCode",
+      "Name": "Create Terminal",
+      "States": [
+        {
+          "Image": "imgs/VisualStudioCode"
+        }
+      ],
+      "Tooltip": "Creates a terminal with the given settings.",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/CreateTerminal.html",
+      "UUID": "nl.plicon.streamdeck-vscode.createterminal"
+    },
+    {
+      "Icon": "imgs/VisualStudioCode",
+      "Name": "Open Folder",
+      "States": [
+        {
+          "Image": "imgs/VisualStudioCode"
+        }
+      ],
+      "Tooltip": "Open a folder or workspace.",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/OpenFolder.html",
+      "UUID": "nl.plicon.streamdeck-vscode.openfolder"
+    },
+    {
+      "Icon": "imgs/TogglePanel",
+      "Name": "Toggle Panel",
+      "States": [
+        {
+          "Image": "imgs/TogglePanel"
+        }
+      ],
+      "Tooltip": "Toggle VS Code panels (sidebar, bottom panel, or terminal).",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/TogglePanel.html",
+      "UUID": "nl.plicon.streamdeck-vscode.togglepanel"
+    },
+    {
+      "Icon": "imgs/RunTask",
+      "Name": "Run Task",
+      "States": [
+        {
+          "Image": "imgs/RunTask"
+        }
+      ],
+      "Tooltip": "Run a VS Code task by name.",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/RunTask.html",
+      "UUID": "nl.plicon.streamdeck-vscode.runtask"
+    },
+    {
+      "Icon": "imgs/NavigateToFile",
+      "Name": "Navigate to File",
+      "States": [
+        {
+          "Image": "imgs/NavigateToFile"
+        }
+      ],
+      "Tooltip": "Open a specific file in the editor by its absolute path.",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/NavigateToFile.html",
+      "UUID": "nl.plicon.streamdeck-vscode.navigatetofile"
+    },
+    {
+      "Icon": "imgs/ToggleZenMode",
+      "Name": "Toggle Zen Mode",
+      "States": [
+        {
+          "Image": "imgs/ToggleZenMode"
+        }
+      ],
+      "Tooltip": "Toggle Zen Mode or Centered Layout in VS Code.",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/ToggleZenMode.html",
+      "UUID": "nl.plicon.streamdeck-vscode.togglezenmode"
+    },
+    {
+      "Icon": "imgs/SwitchWorkspace",
+      "Name": "Switch Workspace",
+      "States": [
+        {
+          "Image": "imgs/SwitchWorkspace"
+        }
+      ],
+      "Tooltip": "Open a folder or workspace by path.",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/SwitchWorkspace.html",
+      "UUID": "nl.plicon.streamdeck-vscode.switchworkspace"
+    },
+    {
+      "Icon": "imgs/SwitchProfile",
+      "Name": "Switch Profile",
+      "States": [
+        {
+          "Image": "imgs/SwitchProfile"
+        }
+      ],
+      "Tooltip": "Switch to a VS Code settings profile by name.",
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "ui/SwitchProfile.html",
+      "UUID": "nl.plicon.streamdeck-vscode.switchprofile"
+    }
+  ],
+  "UUID": "nl.plicon.streamdeck-vscode",
+  "SDKVersion": 2,
+  "Author": "Patrick L.",
+  "CodePath": "bin/plugin.js",
+  "Description": "This plugin integrates Stream Deck with Visual Studio Code. It allows you to execute commands, run tasks, open files, and perform various actions in VS Code directly from your Stream Deck.",
+  "Name": "Visual Studio Code Integration for Mac",
+  "Icon": "imgs/VisualStudioCode",
+  "Category": "Visual Studio Code Integration for Mac",
+  "CategoryIcon": "imgs/VisualStudioCode",
+  "URL": "https://github.com/plicon/streamdeck_vscode",
+  "Version": "6.0.0.0",
+  "Nodejs": {
+    "Version": "20",
+    "Debug": "enabled"
+  },
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.15"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Software": {
+    "MinimumVersion": "6.4"
+  }
+}

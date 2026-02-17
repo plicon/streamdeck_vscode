@@ -46,12 +46,15 @@ function isConnectedToPropertyInspector() {
 }
 
 function registerChangeDetection() {
-  getInputs().forEach(element => element.addEventListener("input", () => saveSettings()));
+  getInputs().forEach(element => {
+    const eventType = element.tagName === "SELECT" ? "change" : "input";
+    element.addEventListener(eventType, () => saveSettings());
+  });
 }
 
 function getInputs() {
   return Array.from(document.querySelectorAll(".sdpi-item-value")).map(element => {
-    if (element.tagName !== "INPUT" && element.tagName !== "TEXTAREA") {
+    if (element.tagName !== "INPUT" && element.tagName !== "TEXTAREA" && element.tagName !== "SELECT") {
       return element.querySelector("input");
     }
 
