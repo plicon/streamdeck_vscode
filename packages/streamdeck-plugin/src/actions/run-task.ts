@@ -14,7 +14,7 @@ export class RunTaskAction extends SingletonAction<RunTaskSettings> {
     if (client) {
       const payload: ExecuteCommandPayload = {
         command: "workbench.action.tasks.runTask",
-        arguments: settings.taskName ? JSON.stringify(settings.taskName) : "",
+        arguments: settings.taskName ? JSON.stringify(settings.taskName) : "null",
       };
       client.send(MessageId.ExecuteCommandMessage, payload);
     }
