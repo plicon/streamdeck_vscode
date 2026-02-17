@@ -56,7 +56,7 @@
     "vscode:prepublish": "npm run build",
     "build": "tsc",
     "watch": "tsc -watch",
-    "pack": "npx @vscode/vsce package --no-dependencies"
+    "pack": "npx @vscode/vsce package --no-dependencies --allow-star-activation"
   },
   "dependencies": {
     "@streamdeck-vscode/shared": "*",
