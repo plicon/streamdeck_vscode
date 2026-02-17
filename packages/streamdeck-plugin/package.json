@@ -5,6 +5,7 @@
   "main": "nl.plicon.streamdeck-vscode.sdPlugin/bin/plugin.js",
   "scripts": {
     "build": "tsc && rollup -c",
+    "watch": "rollup -c -w --watch.onEnd=\"streamdeck restart nl.plicon.streamdeck-vscode\"",
     "pack": "npx @elgato/cli pack nl.plicon.streamdeck-vscode.sdPlugin"
   },
   "dependencies": {

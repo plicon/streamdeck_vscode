@@ -43,6 +43,7 @@ export class ExtensionController {
   readonly onNavigateToFile = this._onNavigateToFile.event;
   readonly onSwitchProfile = this._onSwitchProfile.event;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- heterogeneous emitter map
   private readonly messageHandlers: Record<string, vscode.EventEmitter<any>> = {
     [MessageId.CreateTerminalMessage]: this._onCreateTerminal,
     [MessageId.ExecuteTerminalCommandMessage]: this._onExecuteTerminalCommand,

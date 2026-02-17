@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- mocks require flexible typing */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { MessageId } from "@streamdeck-vscode/shared";
 

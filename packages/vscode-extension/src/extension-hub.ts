@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 import WebSocket = require("ws");
 import { encodeMessage, SESSION_HEADER } from "@streamdeck-vscode/shared";
 import Logger from "./logger";

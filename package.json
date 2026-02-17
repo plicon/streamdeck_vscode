@@ -7,15 +7,19 @@
     "packages/streamdeck-plugin"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "npm run build --workspaces",
     "build:shared": "npm run build -w @streamdeck-vscode/shared",
     "build:extension": "npm run build -w vscode-streamdeck",
     "build:plugin": "npm run build -w @streamdeck-vscode/plugin",
     "pack:plugin": "npm run build && npm run pack -w @streamdeck-vscode/plugin",
+    "lint": "eslint packages/",
     "test": "vitest run",
-		"watch": "rollup -c -w --watch.onEnd=\"streamdeck restart nl.plicon.streamdeck-vscode\""
+    "watch": "npm run build --workspaces && npm run watch -w @streamdeck-vscode/plugin"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.0",
+    "typescript-eslint": "^8.56.0",
     "vitest": "^4.0.18"
   }
 }
