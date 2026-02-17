@@ -130,6 +130,7 @@ async function navigateToFile(request: NavigateToFilePayload) {
       const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(request.filePath));
       await vscode.window.showTextDocument(doc);
     } catch (error) {
+      Logger.log(`Failed to open file: ${request.filePath}`);
       Logger.error(error);
       vscode.window.showErrorMessage(`Failed to open file: ${request.filePath}`);
     }
