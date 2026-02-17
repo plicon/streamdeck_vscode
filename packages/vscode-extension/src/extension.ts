@@ -137,6 +137,7 @@ async function switchProfile(request: SwitchProfilePayload) {
     try {
       await vscode.commands.executeCommand("workbench.profiles.actions.switchProfile", request.profileName);
     } catch (error) {
+      Logger.log(`Failed to switch profile to '${request.profileName}'`);
       Logger.error(error);
     }
   }
