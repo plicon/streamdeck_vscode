@@ -41,7 +41,7 @@ describe("TogglePanelAction", () => {
     await action.onKeyDown(makeKeyDownEvent({ panelType: "sidebar" }));
     expect(mockSend).toHaveBeenCalledWith(MessageId.ExecuteCommandMessage, {
       command: "workbench.action.toggleSidebarVisibility",
-      arguments: "",
+      arguments: "null",
     });
   });
 
@@ -49,7 +49,7 @@ describe("TogglePanelAction", () => {
     await action.onKeyDown(makeKeyDownEvent({ panelType: "panel" }));
     expect(mockSend).toHaveBeenCalledWith(MessageId.ExecuteCommandMessage, {
       command: "workbench.action.togglePanel",
-      arguments: "",
+      arguments: "null",
     });
   });
 
@@ -57,7 +57,7 @@ describe("TogglePanelAction", () => {
     await action.onKeyDown(makeKeyDownEvent({ panelType: "terminal" }));
     expect(mockSend).toHaveBeenCalledWith(MessageId.ExecuteCommandMessage, {
       command: "workbench.action.terminal.toggleTerminal",
-      arguments: "",
+      arguments: "null",
     });
   });
 
@@ -65,7 +65,7 @@ describe("TogglePanelAction", () => {
     await action.onKeyDown(makeKeyDownEvent({}));
     expect(mockSend).toHaveBeenCalledWith(MessageId.ExecuteCommandMessage, {
       command: "workbench.action.togglePanel",
-      arguments: "",
+      arguments: "null",
     });
   });
 
@@ -131,7 +131,7 @@ describe("ToggleZenModeAction", () => {
     await action.onKeyDown(makeKeyDownEvent({ modeType: "zen" }));
     expect(mockSend).toHaveBeenCalledWith(MessageId.ExecuteCommandMessage, {
       command: "workbench.action.toggleZenMode",
-      arguments: "",
+      arguments: "null",
     });
   });
 
@@ -139,7 +139,7 @@ describe("ToggleZenModeAction", () => {
     await action.onKeyDown(makeKeyDownEvent({ modeType: "centered" }));
     expect(mockSend).toHaveBeenCalledWith(MessageId.ExecuteCommandMessage, {
       command: "workbench.action.toggleCenteredLayout",
-      arguments: "",
+      arguments: "null",
     });
   });
 
@@ -147,7 +147,7 @@ describe("ToggleZenModeAction", () => {
     await action.onKeyDown(makeKeyDownEvent({}));
     expect(mockSend).toHaveBeenCalledWith(MessageId.ExecuteCommandMessage, {
       command: "workbench.action.toggleZenMode",
-      arguments: "",
+      arguments: "null",
     });
   });
 
