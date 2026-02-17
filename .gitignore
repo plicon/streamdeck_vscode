@@ -6,5 +6,6 @@ dist/
 !rollup.config.mjs
 packages/streamdeck-plugin/nl.plicon.streamdeck-vscode.sdPlugin/bin/
 *.streamDeckPlugin
+*.vsix
 .DS_Store
 .claude/
