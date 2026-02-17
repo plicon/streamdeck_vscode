@@ -20,7 +20,7 @@ export class ToggleZenModeAction extends SingletonAction<ToggleZenModeSettings> 
     if (client && command) {
       const payload: ExecuteCommandPayload = {
         command,
-        arguments: "",
+        arguments: "null",
       };
       client.send(MessageId.ExecuteCommandMessage, payload);
     }
