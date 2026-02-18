@@ -27,18 +27,22 @@ These send state back to the Stream Deck to update button icons and titles. This
 
 ## Architecture Improvements
 
-### Bidirectional Communication
+### DONE Bidirectional Communication DONE
 
 The current protocol is mostly one-directional (Stream Deck → VS Code). Adding a subscription model where the extension pushes state changes to the plugin would unlock the most compelling integrations (git status, debug state, problem counts).
 
 Proposed approach:
+
 1. Add a `SubscribeMessage` type that the plugin sends to request updates for a topic (e.g., "git.status", "debug.state", "problems.count").
+
 2. The extension listens for workspace/editor/debug events and pushes `StateUpdateMessage` payloads to all subscribed clients.
+
 3. The plugin updates button titles and icons via the Stream Deck SDK's `setTitle()` and `setImage()` APIs.
 
 ### Multi-Profile Stream Deck Pages
 
 Support Stream Deck profiles/pages that automatically switch based on VS Code context:
+
 - Different button layouts for editing vs. debugging vs. git operations.
 - Auto-switch when entering/leaving debug mode.
 
