@@ -20,14 +20,20 @@ The Stream Deck plugin runs a WebSocket server on `127.0.0.1:48969`. The VS Code
 
 ## Supported Actions
 
-| Action                       | Description                                  |
-| ---------------------------- | -------------------------------------------- |
-| **Execute Command**          | Run any VS Code command by its Command ID    |
-| **Execute Terminal Command** | Send a command to the active terminal        |
-| **Create Terminal**          | Open a new terminal with custom settings     |
-| **Insert Snippet**           | Insert a named snippet into the editor       |
-| **Change Language**          | Change the language mode of the active file  |
-| **Open Folder**              | Open a folder or workspace                   |
+| Action                       | Description                                           |
+| ---------------------------- | ----------------------------------------------------- |
+| **Execute Command**          | Run any VS Code command by its Command ID             |
+| **Execute Terminal Command** | Send a command to the active terminal                 |
+| **Create Terminal**          | Open a new terminal with custom settings              |
+| **Insert Snippet**           | Insert a named snippet into the editor                |
+| **Change Language**          | Change the language mode of the active file           |
+| **Open Folder**              | Open a folder or workspace                            |
+| **Toggle Panel**             | Toggle sidebar, bottom panel, or terminal visibility  |
+| **Run Task**                 | Run a VS Code task by name                            |
+| **Navigate to File**         | Open a specific file by its path                      |
+| **Toggle Zen Mode**          | Toggle zen mode or centered layout                    |
+| **Switch Workspace**         | Open a folder or workspace, optionally in a new window|
+| **Switch Profile**           | Switch VS Code settings profile                       |
 
 ## Installation
 

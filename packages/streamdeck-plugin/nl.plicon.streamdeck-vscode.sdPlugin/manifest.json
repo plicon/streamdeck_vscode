@@ -1,11 +1,11 @@
 {
   "Actions": [
     {
-      "Icon": "imgs/VisualStudioCode",
+      "Icon": "imgs/ExecuteCommand",
       "Name": "Execute Command",
       "States": [
         {
-          "Image": "imgs/VisualStudioCode"
+          "Image": "imgs/ExecuteCommand"
         }
       ],
       "Tooltip": "Executes a Visual Studio Code command with the given command identifier (Command ID).",
@@ -14,11 +14,11 @@
       "UUID": "nl.plicon.streamdeck-vscode.executecommand"
     },
     {
-      "Icon": "imgs/VisualStudioCode",
+      "Icon": "imgs/ExecuteTerminalCommand",
       "Name": "Execute Terminal Command",
       "States": [
         {
-          "Image": "imgs/VisualStudioCode"
+          "Image": "imgs/ExecuteTerminalCommand"
         }
       ],
       "Tooltip": "Executes a terminal command.",
@@ -27,11 +27,11 @@
       "UUID": "nl.plicon.streamdeck-vscode.executeterminalcommand"
     },
     {
-      "Icon": "imgs/VisualStudioCode",
+      "Icon": "imgs/InsertSnippet",
       "Name": "Insert Snippet",
       "States": [
         {
-          "Image": "imgs/VisualStudioCode"
+          "Image": "imgs/InsertSnippet"
         }
       ],
       "Tooltip": "Insert snippet.",
@@ -40,11 +40,11 @@
       "UUID": "nl.plicon.streamdeck-vscode.insertsnippet"
     },
     {
-      "Icon": "imgs/VisualStudioCode",
+      "Icon": "imgs/ChangeLanguage",
       "Name": "Change Language",
       "States": [
         {
-          "Image": "imgs/VisualStudioCode"
+          "Image": "imgs/ChangeLanguage"
         }
       ],
       "Tooltip": "Change the language that is associated with the given document.",
@@ -53,11 +53,11 @@
       "UUID": "nl.plicon.streamdeck-vscode.changelanguage"
     },
     {
-      "Icon": "imgs/VisualStudioCode",
+      "Icon": "imgs/CreateTerminal",
       "Name": "Create Terminal",
       "States": [
         {
-          "Image": "imgs/VisualStudioCode"
+          "Image": "imgs/CreateTerminal"
         }
       ],
       "Tooltip": "Creates a terminal with the given settings.",
@@ -66,11 +66,11 @@
       "UUID": "nl.plicon.streamdeck-vscode.createterminal"
     },
     {
-      "Icon": "imgs/VisualStudioCode",
+      "Icon": "imgs/OpenFolder",
       "Name": "Open Folder",
       "States": [
         {
-          "Image": "imgs/VisualStudioCode"
+          "Image": "imgs/OpenFolder"
         }
       ],
       "Tooltip": "Open a folder or workspace.",
