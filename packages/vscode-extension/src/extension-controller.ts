@@ -12,16 +12,23 @@ import {
   OpenFolderPayload,
   NavigateToFilePayload,
   SwitchProfilePayload,
+  SubscribePayload,
+  UnsubscribePayload,
+  StateUpdatePayload,
 } from "@streamdeck-vscode/shared";
 import { ExtensionStatus } from "./extension-status";
 import { ExtensionHub } from "./extension-hub";
 import { ExtensionConfiguration } from "./configuration";
+import { SubscriptionManager } from "./subscription-manager";
 import Logger from "./logger";
 
 export class ExtensionController {
   private hub!: ExtensionHub;
   private status: ExtensionStatus;
   private disposables: vscode.Disposable[] = [];
+  private readonly subscriptionManager = new SubscriptionManager(
+    (topic, state) => this.hub.send(MessageId.StateUpdateMessage, { topic, state } satisfies StateUpdatePayload),
+  );
 
   private _onCreateTerminal = new vscode.EventEmitter<CreateTerminalPayload>();
   private _onExecuteTerminalCommand = new vscode.EventEmitter<ExecuteTerminalCommandPayload>();
@@ -77,6 +84,7 @@ export class ExtensionController {
     for (const emitter of Object.values(this.messageHandlers)) {
       emitter.dispose();
     }
+    this.subscriptionManager.dispose();
     this.hub.disconnect();
   }
 
@@ -118,6 +126,14 @@ export class ExtensionController {
     try {
       const { id, data } = decodeMessage(raw);
       Logger.log(`Message received, ${id}: ${raw}`);
+      if (id === MessageId.SubscribeMessage) {
+        this.subscriptionManager.subscribe((data as SubscribePayload).topic);
+        return;
+      }
+      if (id === MessageId.UnsubscribeMessage) {
+        this.subscriptionManager.unsubscribe((data as UnsubscribePayload).topic);
+        return;
+      }
       const handler = this.messageHandlers[id];
       if (handler) {
         handler.fire(data);
@@ -129,6 +145,7 @@ export class ExtensionController {
 
   private onDisconnected() {
     Logger.log("Disconnected from Stream Deck. Reconnecting in 5 seconds.");
+    this.subscriptionManager.clearAll();
     this.status.setAsConnecting();
     setTimeout(() => this.connect(), 5000);
   }

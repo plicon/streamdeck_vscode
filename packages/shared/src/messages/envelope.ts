@@ -9,6 +9,9 @@ export enum MessageId {
   ChangeActiveSessionMessage = "ChangeActiveSessionMessage",
   NavigateToFileMessage = "NavigateToFileMessage",
   SwitchProfileMessage = "SwitchProfileMessage",
+  SubscribeMessage = "SubscribeMessage",
+  UnsubscribeMessage = "UnsubscribeMessage",
+  StateUpdateMessage = "StateUpdateMessage",
 }
 
 export interface MessageEnvelope {

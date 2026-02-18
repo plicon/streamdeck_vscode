@@ -7,13 +7,18 @@ import {
   SESSION_HEADER,
   ActiveSessionChangedPayload,
   ChangeActiveSessionPayload,
+  StateUpdatePayload,
+  SubscribePayload,
+  UnsubscribePayload,
 } from "@streamdeck-vscode/shared";
 import { Client } from "./client";
+import { TopicSubscriber } from "./topic-subscriber";
 
 export class MessageServer {
   private readonly wss: WebSocketServer;
   private readonly connections = new Map<string, Client>();
   private _currentClient: Client | null = null;
+  private readonly topicSubscribers = new Map<string, Set<TopicSubscriber>>();
 
   get currentClient(): Client | null {
     return this._currentClient;
@@ -53,6 +58,42 @@ export class MessageServer {
     }
   }
 
+  subscribeToTopic(topic: string, subscriber: TopicSubscriber): void {
+    let subscribers = this.topicSubscribers.get(topic);
+    if (!subscribers) {
+      subscribers = new Set();
+      this.topicSubscribers.set(topic, subscribers);
+    }
+    const isFirst = subscribers.size === 0;
+    subscribers.add(subscriber);
+    if (isFirst && this._currentClient) {
+      this._currentClient.send(MessageId.SubscribeMessage, { topic } satisfies SubscribePayload);
+    }
+  }
+
+  unsubscribeFromTopic(topic: string, subscriber: TopicSubscriber): void {
+    const subscribers = this.topicSubscribers.get(topic);
+    if (!subscribers) {
+      return;
+    }
+    subscribers.delete(subscriber);
+    if (subscribers.size === 0) {
+      this.topicSubscribers.delete(topic);
+      if (this._currentClient) {
+        this._currentClient.send(MessageId.UnsubscribeMessage, { topic } satisfies UnsubscribePayload);
+      }
+    }
+  }
+
+  private dispatchStateUpdate(topic: string, state: unknown): void {
+    const subscribers = this.topicSubscribers.get(topic);
+    if (subscribers) {
+      for (const subscriber of subscribers) {
+        subscriber.onStateUpdate(topic, state);
+      }
+    }
+  }
+
   private onMessage(clientId: string, rawMessage: string): void {
     console.log(rawMessage);
 
@@ -61,6 +102,9 @@ export class MessageServer {
       if (id === MessageId.ChangeActiveSessionMessage) {
         const payload = data as ChangeActiveSessionPayload;
         this.setActiveSession(clientId, payload.sessionId);
+      } else if (id === MessageId.StateUpdateMessage) {
+        const payload = data as StateUpdatePayload;
+        this.dispatchStateUpdate(payload.topic, payload.state);
       }
     } catch (err) {
       console.error("Failed to process message:", err);
@@ -71,6 +115,9 @@ export class MessageServer {
     const client = this.connections.get(clientId);
     if (client) {
       this._currentClient = client;
+      for (const topic of this.topicSubscribers.keys()) {
+        client.send(MessageId.SubscribeMessage, { topic } satisfies SubscribePayload);
+      }
     }
 
     const payload: ActiveSessionChangedPayload = { sessionId };
