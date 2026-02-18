@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import WebSocket from "ws";
 import { MessageServer } from "../server/message-server";
 import { encodeMessage, decodeMessage, MessageId, SESSION_HEADER } from "@streamdeck-vscode/shared";
@@ -130,5 +130,180 @@ describe("MessageServer", () => {
     expect(server.currentClient!.sessionId).toBe("session-2");
 
     await Promise.all([closeClient(ws1), closeClient(ws2)]);
+  });
+
+  describe("topic subscriptions", () => {
+    it("subscribeToTopic sends SubscribeMessage to the active client", async () => {
+      const { ws, firstMessage } = await connectClient("session-1");
+      await firstMessage; // consume auto-activate
+
+      const subscriber = { onStateUpdate: vi.fn() };
+      const msgPromise = waitForMessage(ws);
+      server.subscribeToTopic("git.status", subscriber);
+
+      const msg = await msgPromise;
+      expect(msg.id).toBe(MessageId.SubscribeMessage);
+      expect(msg.data).toEqual({ topic: "git.status" });
+
+      await closeClient(ws);
+    });
+
+    it("subscribeToTopic does not send a second SubscribeMessage for the same subscriber", async () => {
+      const { ws, firstMessage } = await connectClient("session-1");
+      await firstMessage;
+
+      const subscriber = { onStateUpdate: vi.fn() };
+      const msgPromise = waitForMessage(ws);
+      server.subscribeToTopic("git.status", subscriber);
+      await msgPromise;
+
+      let extraReceived = false;
+      ws.once("message", () => { extraReceived = true; });
+      server.subscribeToTopic("git.status", subscriber);
+      await new Promise((r) => setTimeout(r, 80));
+
+      expect(extraReceived).toBe(false);
+      await closeClient(ws);
+    });
+
+    it("subscribeToTopic does not send a second SubscribeMessage for additional subscribers on the same topic", async () => {
+      const { ws, firstMessage } = await connectClient("session-1");
+      await firstMessage;
+
+      const subscriber1 = { onStateUpdate: vi.fn() };
+      const subscriber2 = { onStateUpdate: vi.fn() };
+
+      const msgPromise = waitForMessage(ws);
+      server.subscribeToTopic("git.status", subscriber1);
+      await msgPromise;
+
+      let extraReceived = false;
+      ws.once("message", () => { extraReceived = true; });
+      server.subscribeToTopic("git.status", subscriber2);
+      await new Promise((r) => setTimeout(r, 80));
+
+      expect(extraReceived).toBe(false);
+      await closeClient(ws);
+    });
+
+    it("unsubscribeFromTopic sends UnsubscribeMessage when the last subscriber is removed", async () => {
+      const { ws, firstMessage } = await connectClient("session-1");
+      await firstMessage;
+
+      const subscriber = { onStateUpdate: vi.fn() };
+      const subMsgPromise = waitForMessage(ws);
+      server.subscribeToTopic("git.status", subscriber);
+      await subMsgPromise;
+
+      const unsubMsgPromise = waitForMessage(ws);
+      server.unsubscribeFromTopic("git.status", subscriber);
+
+      const msg = await unsubMsgPromise;
+      expect(msg.id).toBe(MessageId.UnsubscribeMessage);
+      expect(msg.data).toEqual({ topic: "git.status" });
+
+      await closeClient(ws);
+    });
+
+    it("unsubscribeFromTopic does not send UnsubscribeMessage while other subscribers remain", async () => {
+      const { ws, firstMessage } = await connectClient("session-1");
+      await firstMessage;
+
+      const subscriber1 = { onStateUpdate: vi.fn() };
+      const subscriber2 = { onStateUpdate: vi.fn() };
+
+      const subMsgPromise = waitForMessage(ws);
+      server.subscribeToTopic("git.status", subscriber1);
+      await subMsgPromise;
+      server.subscribeToTopic("git.status", subscriber2);
+
+      let extraReceived = false;
+      ws.once("message", () => { extraReceived = true; });
+      server.unsubscribeFromTopic("git.status", subscriber1);
+      await new Promise((r) => setTimeout(r, 80));
+
+      expect(extraReceived).toBe(false);
+      await closeClient(ws);
+    });
+
+    it("unsubscribeFromTopic is a no-op for unknown topics", async () => {
+      const { ws, firstMessage } = await connectClient("session-1");
+      await firstMessage;
+
+      let extraReceived = false;
+      ws.once("message", () => { extraReceived = true; });
+      server.unsubscribeFromTopic("unknown.topic", { onStateUpdate: vi.fn() });
+      await new Promise((r) => setTimeout(r, 80));
+
+      expect(extraReceived).toBe(false);
+      await closeClient(ws);
+    });
+
+    it("StateUpdateMessage received from client is dispatched to subscribers", async () => {
+      const { ws, firstMessage } = await connectClient("session-1");
+      await firstMessage;
+
+      const subscriber = { onStateUpdate: vi.fn() };
+      const subMsgPromise = waitForMessage(ws);
+      server.subscribeToTopic("git.status", subscriber);
+      await subMsgPromise;
+
+      ws.send(encodeMessage(MessageId.StateUpdateMessage, { topic: "git.status", state: { branch: "main" } }));
+
+      await vi.waitFor(() => {
+        expect(subscriber.onStateUpdate).toHaveBeenCalledWith("git.status", { branch: "main" });
+      }, { timeout: 500 });
+
+      await closeClient(ws);
+    });
+
+    it("StateUpdateMessage for an unknown topic is silently ignored", async () => {
+      const { ws, firstMessage } = await connectClient("session-1");
+      await firstMessage;
+
+      // No subscriber registered — sending StateUpdateMessage must not throw
+      ws.send(encodeMessage(MessageId.StateUpdateMessage, { topic: "unknown.topic", state: {} }));
+      await new Promise((r) => setTimeout(r, 80));
+      // If we reach here without error the test passes
+
+      await closeClient(ws);
+    });
+
+    it("re-sends SubscribeMessages to a newly active client for all subscribed topics", async () => {
+      // Register subscriptions before any client connects
+      const subscriber1 = { onStateUpdate: vi.fn() };
+      const subscriber2 = { onStateUpdate: vi.fn() };
+      server.subscribeToTopic("git.status", subscriber1);
+      server.subscribeToTopic("debug.state", subscriber2);
+
+      // Connect and eagerly collect all messages (2 SubscribeMessages + 1 ActiveSessionChanged)
+      const messages: { id: string; data: unknown }[] = [];
+      const ws = new WebSocket(`ws://${TEST_HOST}:${TEST_PORT}`, {
+        headers: { [SESSION_HEADER]: "session-reconnect" },
+      });
+
+      const allReceived = new Promise<void>((resolve) => {
+        ws.on("message", (raw) => {
+          messages.push(decodeMessage(raw.toString()));
+          if (messages.length >= 3) resolve();
+        });
+      });
+
+      await new Promise<void>((resolve, reject) => {
+        ws.on("open", resolve);
+        ws.on("error", reject);
+      });
+
+      await allReceived;
+
+      const subscribeMsgs = messages.filter((m) => m.id === MessageId.SubscribeMessage);
+      expect(subscribeMsgs).toHaveLength(2);
+
+      const topics = subscribeMsgs.map((m) => (m.data as { topic: string }).topic);
+      expect(topics).toContain("git.status");
+      expect(topics).toContain("debug.state");
+
+      await closeClient(ws);
+    });
   });
 });

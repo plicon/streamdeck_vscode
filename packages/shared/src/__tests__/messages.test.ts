@@ -13,10 +13,13 @@ describe("MessageId enum", () => {
     expect(MessageId.ChangeActiveSessionMessage).toBe("ChangeActiveSessionMessage");
     expect(MessageId.NavigateToFileMessage).toBe("NavigateToFileMessage");
     expect(MessageId.SwitchProfileMessage).toBe("SwitchProfileMessage");
+    expect(MessageId.SubscribeMessage).toBe("SubscribeMessage");
+    expect(MessageId.UnsubscribeMessage).toBe("UnsubscribeMessage");
+    expect(MessageId.StateUpdateMessage).toBe("StateUpdateMessage");
   });
 
-  it("has exactly 10 message types", () => {
+  it("has exactly 13 message types", () => {
     const values = Object.values(MessageId);
-    expect(values).toHaveLength(10);
+    expect(values).toHaveLength(13);
   });
 });
